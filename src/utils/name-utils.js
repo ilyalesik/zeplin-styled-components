@@ -27,3 +27,7 @@ function tokensForString(str) {
 export function generateName(name, isLowercaseFirst) {
     return joinTokens(tokensForString(name), isLowercaseFirst);
 }
+
+export function camelCaseToDash(str) {
+    return str.replace(/([a-zA-Z])(?=[A-Z])/g, '$1-').toLowerCase()
+}

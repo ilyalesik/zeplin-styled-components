@@ -3,6 +3,7 @@ import {
     generateStyleguideTextStylesObject
 } from "./style-object-helpers";
 import {
+    camelCaseToDash,
     generateName,
     getColorMapByFormat,
     getColorStringByFormat
@@ -12,7 +13,7 @@ import { REACT_RULES_WITH_COLOR, JSON_SPACING } from "../constants";
 
 function convertStyleObjToStr(styleObj, JSON_SPACING) {
     const space = (new Array(JSON_SPACING + 1)).join(' ');
-    return Object.keys(styleObj).reduce((result, current) => `${result}\n${space}${current}: ${styleObj[current]};` , "");
+    return Object.keys(styleObj).reduce((result, current) => `${result}\n${space}${camelCaseToDash(current)}: ${styleObj[current]};` , "");
 }
 
 function generateReactRule(styleObj, projectColorMap, tag) {
