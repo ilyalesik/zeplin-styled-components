@@ -47,6 +47,12 @@
         "type": "switch",
         "id": "showDefaultValues",
         "default": true
+      },
+      {
+        "name": "Default tag",
+        "type": "text",
+        "id": "defaultTag",
+        "default": "div"
       }
     ]
   },

@@ -10,7 +10,7 @@ import {
 
 import { REACT_RULES_WITH_COLOR, JSON_SPACING } from "../constants";
 
-function generateReactRule(styleObj, projectColorMap, mixin) {
+function generateReactRule(styleObj, projectColorMap, tag) {
     var selector = styleObj.selector;
     delete styleObj.selector;
 
@@ -29,7 +29,7 @@ function generateReactRule(styleObj, projectColorMap, mixin) {
         .replace(/"(.+)":/g, "$1:")
         .replace(/: "colors\.(.*)"/g, ": colors.$1");
 
-    return `const ${selectorName} = ${styleObjText};`;
+    return `const ${selectorName} = styled.${tag}\`${styleObjText};\``;
 }
 
 function getStyleguideColorTexts(colorFormat, colors) {
@@ -58,7 +58,7 @@ function getStyleguideTextStylesCode(options, project, textStyles) {
 }
 
 function getLayerCode(project, layer, options) {
-    var { showDimensions, colorFormat, defaultValues } = options;
+    var { showDimensions, colorFormat, defaultValues, defaultTag } = options;
 
     var layerStyleRule = generateLayerStyleObject({
         layer,
@@ -78,7 +78,8 @@ function getLayerCode(project, layer, options) {
     return cssObjects.map(cssObj =>
         generateReactRule(
             cssObj,
-            getColorMapByFormat(project.colors, options.colorFormat)
+            getColorMapByFormat(project.colors, options.colorFormat),
+            defaultTag
         )
     ).join("\n\n");
 }

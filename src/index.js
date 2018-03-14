@@ -33,7 +33,8 @@ function layer(context, selectedLayer) {
     var options = {
         showDimensions: context.getOption(OPTION_NAMES.SHOW_DIMENSIONS),
         colorFormat: context.getOption(OPTION_NAMES.COLOR_FORMAT),
-        defaultValues: context.getOption(OPTION_NAMES.SHOW_DEFAULT_VALUES)
+        defaultValues: context.getOption(OPTION_NAMES.SHOW_DEFAULT_VALUES),
+        defaultTag: context.getOption(OPTION_NAMES.DEFAULT_TAG)
     };
     var code = getLayerCode(context.project, selectedLayer, options);
 
