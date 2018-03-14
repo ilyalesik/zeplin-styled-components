@@ -24,7 +24,7 @@ function generateReactRule(styleObj, projectColorMap, tag) {
         }
     });
 
-    var selectorName = generateName(selector);
+    var selectorName = generateName(selector, false);
     var styleObjText = JSON.stringify(styleObj, null, JSON_SPACING)
         .replace(/"(.+)":/g, "$1:")
         .replace(/: "colors\.(.*)"/g, ": colors.$1");

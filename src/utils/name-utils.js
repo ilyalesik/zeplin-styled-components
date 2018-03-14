@@ -6,9 +6,9 @@ function uppercaseFirst(s) {
     return s.charAt(0).toUpperCase() + s.substring(1);
 }
 
-function joinTokens(components) {
+function joinTokens(components, isLowercaseFirst = true) {
     var name = components.map(uppercaseFirst).join("");
-    return lowercaseFirst(name);
+    return isLowercaseFirst ? lowercaseFirst(name) : name;
 }
 
 function tokensForString(str) {
@@ -24,6 +24,6 @@ function tokensForString(str) {
     });
 }
 
-export function generateName(name) {
-    return joinTokens(tokensForString(name));
+export function generateName(name, isLowercaseFirst) {
+    return joinTokens(tokensForString(name), isLowercaseFirst);
 }
