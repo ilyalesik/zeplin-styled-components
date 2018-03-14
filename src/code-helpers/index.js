@@ -10,6 +10,11 @@ import {
 
 import { REACT_RULES_WITH_COLOR, JSON_SPACING } from "../constants";
 
+function convertStyleObjToStr(styleObj, JSON_SPACING) {
+    const space = (new Array(JSON_SPACING + 1)).join(' ');
+    return Object.keys(styleObj).reduce((result, current) => `${result}\n${space}${current}: ${styleObj[current]};` , "");
+}
+
 function generateReactRule(styleObj, projectColorMap, tag) {
     var selector = styleObj.selector;
     delete styleObj.selector;
@@ -25,11 +30,11 @@ function generateReactRule(styleObj, projectColorMap, tag) {
     });
 
     var selectorName = generateName(selector, false);
-    var styleObjText = JSON.stringify(styleObj, null, JSON_SPACING)
+    var styleObjText = convertStyleObjToStr(styleObj, JSON_SPACING)
         .replace(/"(.+)":/g, "$1:")
         .replace(/: "colors\.(.*)"/g, ": colors.$1");
 
-    return `const ${selectorName} = styled.${tag}\`${styleObjText};\``;
+    return `const ${selectorName} = styled.${tag}\`${styleObjText}\n\`;`;
 }
 
 function getStyleguideColorTexts(colorFormat, colors) {
