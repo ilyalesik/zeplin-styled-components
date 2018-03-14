@@ -25,7 +25,7 @@ function generateReactRule(styleObj, projectColorMap, tag) {
         }
 
         if (REACT_RULES_WITH_COLOR.includes(prop) && styleObj[prop] in projectColorMap) {
-            styleObj[prop] = `colors.${projectColorMap[styleObj[prop]]}`;
+            styleObj[prop] = `\$\{colors.${projectColorMap[styleObj[prop]]}\}`;
         }
     });
 
