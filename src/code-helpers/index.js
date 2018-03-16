@@ -6,7 +6,7 @@ import {
     camelCaseToDash,
     generateName,
     getColorMapByFormat,
-    getColorStringByFormat
+    getColorStringByFormat, uppercaseFirst
 } from "../utils";
 
 import { REACT_RULES_WITH_COLOR, JSON_SPACING } from "../constants";
@@ -57,10 +57,10 @@ function getStyleguideColorsCode(options, colors) {
 function getStyleguideTextStylesCode(options, project, textStyles) {
     var textStylesObj = generateStyleguideTextStylesObject(options, project, textStyles);
 
-    var textStylesStr = JSON.stringify(textStylesObj, null, JSON_SPACING);
+    var textStylesStr = Object.keys(textStylesObj).reduce((result, current) => `${result}\n\nexport const ${uppercaseFirst(current)} = styled.span\`${convertStyleObjToStr(textStylesObj[current], 2)}\n\`;` , "");
     var processedTextStyles = textStylesStr.replace(/"(.+)":/g, "$1:").replace(/: "colors\.(.*)"/g, ": colors.$1");
 
-    return `const textStyles = StyleSheet.create(${processedTextStyles});`;
+    return processedTextStyles;
 }
 
 function getLayerCode(project, layer, options) {

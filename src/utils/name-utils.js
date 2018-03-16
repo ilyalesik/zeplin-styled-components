@@ -2,7 +2,7 @@ function lowercaseFirst(s) {
     return s.charAt(0).toLowerCase() + s.substring(1);
 }
 
-function uppercaseFirst(s) {
+export function uppercaseFirst(s) {
     return s.charAt(0).toUpperCase() + s.substring(1);
 }
 

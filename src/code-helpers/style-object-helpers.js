@@ -238,7 +238,7 @@ function generateTextStyleCode(textStyle, params) {
     delete fontStyles.selector;
 
     if (params.projectColor) {
-        fontStyles.color = `colors.${params.projectColor.name}`;
+        fontStyles.color = `\$\{colors.${generateName(params.projectColor.name)}\}`;
     }
 
     textStyleCode[selector] = fontStyles;
