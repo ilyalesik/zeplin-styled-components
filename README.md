@@ -1,1 +1,1 @@
-# Sample Zeplin Extension
+# Styled Components Zeplin Extension
