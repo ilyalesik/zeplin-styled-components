@@ -186,7 +186,7 @@ function generateTextStyleStyleObject({
     var overrideLayerStyle;
 
     styleProperties.fontFamily = textStyle.fontFamily;
-    styleProperties.fontSize = round(textStyle.fontSize / densityDivisor, 1);
+    styleProperties.fontSize = round(textStyle.fontSize / densityDivisor, 1) + "px";
 
     overrideLayerStyle = layerStyle && layerStyle["font-weight"] && layerStyle["font-weight"] !== "normal";
     if (textStyle.fontWeight === NUMERICAL_FONT_BOLD) {
@@ -203,7 +203,7 @@ function generateTextStyleStyleObject({
     }
 
     if (textStyle.lineHeight) {
-        styleProperties.lineHeight = round(textStyle.lineHeight / densityDivisor, 1);
+        styleProperties.lineHeight = round(textStyle.lineHeight / textStyle.fontSize, 2);
     }
 
     overrideLayerStyle = layerStyle && layerStyle["letter-spacing"] && layerStyle["letter-spacing"] !== "normal";
