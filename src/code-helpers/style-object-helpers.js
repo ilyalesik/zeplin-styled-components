@@ -54,9 +54,7 @@ function generateBorderStyleObject(border, layerType, densityDivisor, colorForma
     }
 
     return {
-        borderStyle: "solid",
-        borderWidth: round(border.thickness / densityDivisor, 1),
-        borderColor: getColorStringByFormat(border.fill.color, colorFormat)
+        border: `${round(border.thickness / densityDivisor, 1)}px solid ${getColorStringByFormat(border.fill.color, colorFormat)}`,
     };
 }
 
@@ -106,8 +104,8 @@ function generateLayerStyleObject({
     };
 
     if (showDimensions) {
-        styles.width = round(layer.rect.width / densityDivisor, 1);
-        styles.height = round(layer.rect.height / densityDivisor, 1);
+        styles.width = round(layer.rect.width / densityDivisor, 1) + "px";
+        styles.height = round(layer.rect.height / densityDivisor, 1) + "px";
     }
 
     if (layer.rotation) {
@@ -120,7 +118,7 @@ function generateLayerStyleObject({
     }
 
     if (layer.borderRadius) {
-        styles.borderRadius = round(layer.borderRadius / densityDivisor, 1);
+        styles.borderRadius = round(layer.borderRadius / densityDivisor, 1) + "px";
     }
 
     if (layerType === "text" && layer.defaultTextStyle) {
